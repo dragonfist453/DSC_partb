@@ -6,7 +6,8 @@ void stack();
 void queue();
 void graph_stack(node*);
 void graph_queue(node*);
-void node_draw(int,int,int);
+void stack_node_draw(int,int,int);
+void queue_node_draw(int,int,int);
 void init();
 int main()
 {
@@ -35,7 +36,7 @@ int main()
 void stack()
 {
 	int ele,ch;	
-	node* top;
+	node* top=NULL;
 	while(1)
 	{
 		printf("What operation would you want to perform on a stack?\n1. Push\n2. Pop\n3. Display graphically\n4. Get out of this mess\n5. Display stack normally\n");
@@ -65,9 +66,7 @@ void stack()
 			case 4:	printf("Don't we all? :\")");
 					exit(0);	
 					break;
-			case 5: printf("Entered switch");
-					fflush(stdout);
-					display(top);
+			case 5: display(top);
 					break;	
 			default: printf("Wrong choice entered!\n");
 					break;							
@@ -77,7 +76,7 @@ void stack()
 void queue()
 {
 	int ele,ch;	
-	node* front;
+	node* front=NULL;
 	while(1)
 	{
 		printf("What operation would you want to perform on a queue?\n1. Enqueue\n2. Dequeue\n3. Display graphically\n4. Get out of this mess\n5. Display queue normally\n");
@@ -119,7 +118,7 @@ void init()
 	initgraph(&gd,&gm,NULL);
 	printf("Press q to go back\n");
 }
-void node_draw(int x,int y,int i)
+void stack_node_draw(int x,int y,int i)
 {
 	char num[5]="";
 	sprintf(num,"%d",i);
@@ -134,21 +133,29 @@ void graph_stack(node* top)
 	node* ptr=top;
 	while(ptr!=NULL)
 	{
-		node_draw(x,y,ptr->data);
+		stack_node_draw(x,y,ptr->data);
 		y=y+35;
 		ptr=ptr->next;
 	}
 	line(x-100,y,x+100,y);
 }
+void queue_node_draw(int x,int y, int i)
+{
+	char num[5]="";
+	sprintf(num,"%d",i);
+	setcolor(WHITE);
+	rectangle(x,y-15,x+50,y+15);
+	outtextxy(x+20,y-2,num);
+}
 void graph_queue(node* front)
 {
 	int x=getmaxx()/20;
 	int y=getmaxy()/2;
-	outtextxy(x,y,"----->");
+	outtextxy(x-40,y,"----->");
 	node* ptr=front;
 	while(ptr!=NULL)
 	{
-		node_draw(x,y,ptr->data);
+		queue_node_draw(x,y,ptr->data);
 		x=x+55;
 		ptr=ptr->next;
 	}
