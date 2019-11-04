@@ -8,6 +8,7 @@ void graph_stack(node*);
 void graph_queue(node*);
 void stack_node_draw(int,int,int);
 void queue_node_draw(int,int,int);
+int wait_for_key();
 void init();
 int main()
 {
@@ -54,7 +55,7 @@ void stack()
 					{
 						init();
 						graph_stack(top);
-						if(getch()=='q')
+						if(wait_for_key())
 						{
 							cleardevice();
 							closegraph();
@@ -63,7 +64,7 @@ void stack()
 					}
 					closegraph();
 					break;	
-			case 4:	printf("Don't we all? :\")");
+			case 4:	printf("Don't we all? :\")\n");
 					exit(0);	
 					break;
 			case 5: display(top);
@@ -94,7 +95,7 @@ void queue()
 					{
 						init();
 						graph_queue(front);
-						if(getch()=='q')
+						if(wait_for_key())
 						{
 							cleardevice();
 							closegraph();
@@ -103,7 +104,7 @@ void queue()
 					}
 					closegraph();
 					break;	
-			case 4:	printf("Don't we all? :\")");
+			case 4:	printf("Don't we all? :\")\n");
 					exit(0);	
 			case 5: display(front);
 					break;		
@@ -161,7 +162,15 @@ void graph_queue(node* front)
 	}
 	line(x,y-60,x,y+60);
 }
-
+int wait_for_key()
+{
+	int key = 0;
+	while(key==0)
+	{
+		key=getch();
+	}
+	return key;		
+}
 
 
 
