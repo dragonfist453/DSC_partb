@@ -171,26 +171,3 @@ int wait_for_key()
 	}
 	return key;		
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
